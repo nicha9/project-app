@@ -99,7 +99,7 @@ class _ForgotpasswordState extends State<Forgotpassword> {
           builder:(BuildContext context) {
             return AlertDialog(
               title: const Text('done',style: TextStyle(fontSize: 35,)),
-              content: Text('reset password email was send', style: const TextStyle(fontSize: 25),),
+              content: Text('reset password email was send. If you do not see it, please check in your spam folder.', style: const TextStyle(fontSize: 25),),
               actions: [
                 TextButton(
                   child: const Text('OK',style: TextStyle(fontSize: 20)),
