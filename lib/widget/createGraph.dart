@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'resultModel.dart';
+import '../model/resultModel.dart';
 
 class CreateGraph extends StatefulWidget{
   String id;
@@ -20,10 +20,6 @@ class _CreateGraphState extends State<CreateGraph> {
   Widget build(BuildContext context) {
 
     return Container(
-      // margin: const EdgeInsets.only(
-      //   left: 50,
-      //   right: 50,
-      // ),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
           color: Colors.white,
@@ -40,9 +36,8 @@ class _CreateGraphState extends State<CreateGraph> {
             return Text('something went wrong! ${snapshot.error}');
           }
           else if (snapshot.hasData) {
-            //_item = snapshot.data!;
             _item = snapshot.data!;
-            //print(_item);
+
             return SfCartesianChart(
               primaryXAxis: CategoryAxis(
                 labelStyle: TextStyle(fontSize: 20),
@@ -50,11 +45,11 @@ class _CreateGraphState extends State<CreateGraph> {
               ),
               enableAxisAnimation: true,
 
-              //title: ChartTitle(text: pattern),
+              title: ChartTitle(text: widget.pattern),
               legend: Legend(isVisible: true,position: LegendPosition.bottom),
               tooltipBehavior: TooltipBehavior(enable: true),
               series: <ChartSeries<Item, String>>[
-                //currentuser data
+
                 LineSeries<Item, String>(
                   dataSource: _item,
                   xValueMapper: (Item item, _) => 'trial ' + item.trial.toString(),

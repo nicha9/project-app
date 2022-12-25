@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:test_project_db/createGraph.dart';
-import 'package:test_project_db/resultModel.dart';
+import 'package:test_project_db/widget/createGraph.dart';
+import 'package:test_project_db/model/resultModel.dart';
 
 class OverallGraph extends StatefulWidget{
 
@@ -42,9 +42,8 @@ class _OverallGraphState extends State<OverallGraph> {
             return Text('something went wrong! ${snapshot.error}');
           }
           else if (snapshot.hasData) {
-            //_item = snapshot.data!;
             _item = snapshot.data!;
-            //print(_item);
+
             return SfCartesianChart(
               primaryXAxis: CategoryAxis(
                   labelStyle: TextStyle(fontSize: 20),
@@ -52,17 +51,15 @@ class _OverallGraphState extends State<OverallGraph> {
               ),
               enableAxisAnimation: true,
 
-              //title: ChartTitle(text: pattern),
               legend: Legend(isVisible: true,position: LegendPosition.bottom),
               tooltipBehavior: TooltipBehavior(enable: true),
               series: <ChartSeries<FetchData, String>>[
-                //currentuser data
                 LineSeries<FetchData, String>(
                   dataSource: _item,
                   xValueMapper: (FetchData item, _) => 'trial ' + item.trial.toString(),
                   yValueMapper: (FetchData item, _) => item.score,
                   name: 'Overall errors',
-                  //dataLabelSettings: DataLabelSettings(isVisible: true),
+
                 ),
 
               ],

@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:test_project_db/home.dart';
-import 'package:test_project_db/menubar.dart';
+import 'package:test_project_db/widget/menubar.dart';
 
 import 'addPracticePic.dart';
 
@@ -32,7 +32,7 @@ class _ResultPageState extends State<ResultPage> {
   var _score1;
   var _score2;
   var _xscore;
-  // num _score = 0;
+
   var user = FirebaseAuth.instance.currentUser;
 
   Future<void> getUserData() async {
@@ -82,7 +82,6 @@ class _ResultPageState extends State<ResultPage> {
   }
 
   _getOverallError() {
-    // _score = int.parse(widget.errScore);
     overallErr = ((widget.errScore/133)*100.0);
     return overallErr.floor();
   }
@@ -104,7 +103,7 @@ class _ResultPageState extends State<ResultPage> {
       print('update data to firestore');
       CollectionReference aveRef = FirebaseFirestore.instance.collection('average');
       CollectionReference uRef = FirebaseFirestore.instance.collection('users');
-      // FirebaseFirestore.instance.collection('users').doc(user!.uid).set(data, SetOptions(merge: true));
+
       CollectionReference ref = FirebaseFirestore.instance.collection(widget.patternNo);
       await ref.doc().set({
         'id': user!.uid,
@@ -114,25 +113,25 @@ class _ResultPageState extends State<ResultPage> {
         'date' : dateStr,
       });
 
-      print(widget.patternNo);
+      // print(widget.patternNo);
       //update pattern trial
       if(widget.patternNo == 'pattern1'){
-        print('update pattern'+(widget.trialNo+1).toString());
-        // await aveRef.doc('${widget.patternNo}_${widget.trialNo}').update({'score': ((_avScore + widget.errScore)/2).floor()});
+        // print('update pattern'+(widget.trialNo+1).toString());
+
         await uRef.doc(user!.uid).update({'trial_pattern1': widget.trialNo+1,});
-        // await uRef.doc(user?.uid).update({'pt1_score': widget.errScore+widget._score});
+
         await uRef.doc(user!.uid).update({'pt1_score': ((_score1 + err)/2).floor()});
-        // await uRef.doc(user!.uid).update({'pt1_score': ((_score1 + widget.errScore)/2).floor()});
+
       }else{
-        print('update pattern'+(widget.trialNo+1).toString());
-        print('update score '+ ((_score2 + widget.errScore)/2).toString());
+        // print('update pattern'+(widget.trialNo+1).toString());
+        // print('update score '+ ((_score2 + widget.errScore)/2).toString());
         await uRef.doc(user!.uid).update({'trial_pattern2': widget.trialNo+1,});
-        // await uRef.doc(user?.uid).update({'pt2_score': widget.errScore+widget._score});
+
         await uRef.doc(user!.uid).update({'pt2_score': ((_score2 + err)/2).floor()});
-        // await uRef.doc(user!.uid).update({'pt2_score': ((_score2 + widget.errScore)/2).floor()});
+
       }
       //update x_score
-      print('doc: ${widget.patternNo}_${widget.trialNo-1}');
+      // print('doc: ${widget.patternNo}_${widget.trialNo-1}');
       //update
       try{
         await aveRef.doc('${widget.patternNo}_${widget.trialNo-1}').update({'score': _calculate(_avScore, err)});
@@ -145,27 +144,24 @@ class _ResultPageState extends State<ResultPage> {
         });
       }
 
-      print('update xscore ${_calculate(_xscore, err)}');
       if (_xscore == 0) {
         await uRef.doc(user!.uid).update({'x_score': err});
       } else {
         await uRef.doc(user!.uid).update({'x_score': _calculate(_xscore, err)});
       }
 
-      //((_xscore + err)/2).floor(),
 
       showDialog(
           context: context,
           builder:(BuildContext context) {
             return AlertDialog(
               title: Text('SAVE'),
-              content: Text(widget.patternNo + ' ' + widget.trialNo.toString() + 'was saved!!'),
+              content: Text('Result of '+ widget.patternNo+ ' : '+ widget.trialNo.toString()+ ' was saved!'),
               actions: [
                 TextButton(
                   child: const Text('OK'),
                   onPressed: () {
-                    //Navigator.canPop(context); //close popup
-                    // Navigator.canPop(context) ? Navigator.of(context) : null;
+
 
                     Navigator.canPop(context) ? Navigator.of(context) : null;
                     Navigator.pushReplacement(
@@ -180,24 +176,25 @@ class _ResultPageState extends State<ResultPage> {
       print(e);
     }
   }
-  //localhost
-  // final String baseUrl = "http://10.0.2.2:5000";
+
+  // ----------------- change api url ---------------------//
   final String baseUrl = "http://34.81.100.38:8080";
+  // final String baseUrl = "http://10.0.2.2:5000"; //test with localhost
+
   Future<void> _clear() async {
     BaseOptions options = new BaseOptions(
         baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
-        connectTimeout: 10*1000, // 60 seconds
-        receiveTimeout: 10*1000 // 60 seconds
+        connectTimeout: 10*1000,
+        receiveTimeout: 10*1000
     );
     Dio dio = new Dio(options);
 
-    // final Dio dio = Dio();
 
     FormData formData = FormData.fromMap({
       "path": widget.pathFile,
     });
-    //
+
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -206,7 +203,6 @@ class _ResultPageState extends State<ResultPage> {
     try{
       var response = await dio.delete("$baseUrl/processing/cancel",
           data: formData);
-
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => Menubar())
       );
@@ -216,16 +212,6 @@ class _ResultPageState extends State<ResultPage> {
     }
 
   }
-
-  // _updateData(int pat1, int pat2) async {
-  //   CollectionReference ref = FirebaseFirestore.instance.collection('users');
-  //   await ref.doc(user?.uid).update({
-  //     'trial_pattern1': widget.trialNo+pat1,
-  //     'trial_pattern2': widget.trialNo+pat2,
-  //     // 'x_score': ,
-  //   }
-  // );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -237,12 +223,7 @@ class _ResultPageState extends State<ResultPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             color: Colors.cyan.shade400,
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.teal.shade200, Colors.cyan.shade400],
-              //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-            ),*/
+
           ),
         ),
       ),
@@ -274,14 +255,12 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 child: GestureDetector(
                   onTap: (){
-                    print('tap');
                     showDialog(context: context,
                         builder: (context) => Center(child: Image.network(
                       widget.pathFile,
-                      fit: BoxFit.cover,
+                      // fit: BoxFit.cover,
                     ),));
                   },
-
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: Image.network(widget.pathFile, height: 400, width: 400,fit: BoxFit.cover,),
@@ -316,8 +295,7 @@ class _ResultPageState extends State<ResultPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
-                    //alignment: Alignment.center,
-                    //padding: EdgeInsets.fromLTRB(50, 40, 30, 40),
+
                     child: TextButton(
                       style: TextButton.styleFrom(
                         elevation: 3,
@@ -329,7 +307,7 @@ class _ResultPageState extends State<ResultPage> {
                       ),
                       onPressed: () {
                         style: TextButton.styleFrom(
-                          //foregroundColor: Colors.red,
+
                           elevation: 4,
                           backgroundColor: Colors.grey.shade600,
                         );
@@ -355,10 +333,6 @@ class _ResultPageState extends State<ResultPage> {
                                 ],
                               );
                             });
-                        // Navigator.canPop(context) ? Navigator.of(context) : null;
-                        // Navigator.pushReplacement(
-                        //     context, MaterialPageRoute(builder: (_) => Menubar()));
-
                       },
                       child: Text(
                         'cancel',
@@ -368,7 +342,7 @@ class _ResultPageState extends State<ResultPage> {
                   ),
 
                   Container(
-                    //padding: EdgeInsets.fromLTRB(50, 40, 30, 40),
+
                     child: TextButton(
                       style: TextButton.styleFrom(
                         elevation: 3,
@@ -379,17 +353,14 @@ class _ResultPageState extends State<ResultPage> {
                         backgroundColor: Colors.cyan.shade400,
                       ),
                       onPressed: () {
-                        //dialog save success
 
                         style: TextButton.styleFrom(
-                          //foregroundColor: Colors.red,
                           elevation: 4,
                           backgroundColor: Colors.cyan.shade600,
                         );
-                        //แก้, update db ->? trial number, save score
+
                         _saveData();
-                        // Navigator.push(
-                        //     context, MaterialPageRoute(builder: (_) => ResultPage(widget.patternNo,widget.trialNo)));
+
                       },
                       child: Text(
                         'save',

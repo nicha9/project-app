@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'createGraph.dart';
-import 'menubar.dart';
+import 'widget/createGraph.dart';
+import 'widget/menubar.dart';
 
 class GraphPage extends StatelessWidget {
 
@@ -25,12 +25,6 @@ class GraphPage extends StatelessWidget {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             color: Colors.cyan.shade400,
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.teal.shade200, Colors.cyan.shade400],
-              //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-            ),*/
           ),
         ),
       ),

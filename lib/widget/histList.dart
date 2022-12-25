@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project_db/resultModel.dart';
+import 'package:test_project_db/model/resultModel.dart';
 
 class HistList extends StatelessWidget {
   String? pattern; //collection name -> 'pattern1', 'pattern2'
@@ -16,7 +16,7 @@ class HistList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    //return StreamBuilder(
+
     return StreamBuilder<List<Item>>(
       stream: readPattern(pattern),
       builder: (context, AsyncSnapshot<List<Item>> snapshot) {
@@ -24,10 +24,8 @@ class HistList extends StatelessWidget {
           return Text('something went wrong! ${snapshot.error}');
         }
         else if (snapshot.hasData) {
-          //_item = snapshot.data!;
           _item = snapshot.data!;
-          print(_item);
-          //final item = snapshot.data;
+
 
           return Container(
               margin: const EdgeInsets.all(10),
@@ -36,9 +34,8 @@ class HistList extends StatelessWidget {
                   itemCount: _item.length,
                   itemBuilder: (context, index){
                     final Item patternItem = _item[index];
-                    //DocumentSnapshot docs = snapshot.data[index];
+
                     return Container(
-                      //height: 200,
                       width: 280,
                       margin: const EdgeInsets.only(
                         left: 10,
@@ -59,19 +56,15 @@ class HistList extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: Container(
-                              //height: 250,
                               child: GestureDetector(
                                 onTap: () {
                                   showDialog(context: context,
                                       builder: (context) => Center(child: Image.network(
                                         patternItem.result_image,
                                         fit: BoxFit.cover,
-                                        // width: size.width,
-                                        // height: size.height,
                                       ),)
                                   );
 
-                                  //print('tapping');
                                 },
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(6),
@@ -104,7 +97,6 @@ class HistList extends StatelessWidget {
                                   Container(
                                     height: 50,
                                     decoration: BoxDecoration(
-                                      //shape: BoxShape.circle,
                                       borderRadius: BorderRadius.circular(22),
                                       color: Colors.cyan.shade200,
                                     ),
@@ -124,7 +116,6 @@ class HistList extends StatelessWidget {
                       ),
                     );
                   },
-                  //children: items!.map(buildUsers).toList()
               ),
           ); //here
         }

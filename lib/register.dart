@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'main.dart';
+import 'login.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -15,20 +15,19 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   _RegisterPageState();
 
-  final formKey = GlobalKey<FormState>(); //test1
+  final formKey = GlobalKey<FormState>();
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   //db
   final _controllerEmail = TextEditingController();
   final _controllerPassword = TextEditingController();
   final _controllerName = TextEditingController();
-  //final _controllerRole = TextEditingController();
+
 
   @override
   void dispose(){
     _controllerEmail.dispose();
     _controllerPassword.dispose();
     _controllerName.dispose();
-    //_controllerRole.dispose();
     super.dispose();
   }
 
@@ -52,12 +51,6 @@ class _RegisterPageState extends State<RegisterPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             color: Colors.cyan.shade400,
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.teal.shade200, Colors.cyan.shade400],
-              //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-            ),*/
           ),
         ),
       ),
@@ -83,7 +76,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: RequiredValidator(errorText: 'Please input your name'),
-                  //controller: _username,
                   controller: _controllerName, //db
                   decoration: InputDecoration(
                     labelText: 'Name : ',
@@ -108,7 +100,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     EmailValidator(errorText: 'Invalid email address. Please try again.')
                   ]),
                   keyboardType: TextInputType.emailAddress,
-                  //controller: _password,
                   controller: _controllerEmail, //db
                   decoration: InputDecoration(
                     labelText: 'Email : ',
@@ -196,35 +187,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 100,
               ),
               Container(
-                //padding: EdgeInsets.only(top: 90),
                 height: 70,
                 width: 350,
                 decoration: BoxDecoration(
                     color:  Colors.cyan.shade400, borderRadius: BorderRadius.circular(20)),
                 child: TextButton(
                   onPressed: () {
-                    //insertApi();
-                    //print(_name);
-                    //print(_password);
-
-                    //db C
-                    // final user = User(
-                    //   name: controllerName.text,
-                    //   email: controllerEmail.text,
-                    //   password: controllerPassword.text,
-                    //   role: controllerRole.text
-                    // );
-
                     _signUp();
-
-                    //กลับไปหน้า login
-                    // Navigator.of(context).push( //ไปหน้า register
-                    //     MaterialPageRoute(builder: (context) => Login())
-                    // );
-
                   },
                   child: Text(
-                    // REGISTER
                     'Register',
                     style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
@@ -255,13 +226,6 @@ class _RegisterPageState extends State<RegisterPage> {
         email: _controllerEmail.text.trim(),
         password: _controllerPassword.text.trim(),
       );
-
-      /*await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _controllerEmail.text.trim(),
-        password: _controllerPassword.text.trim(),
-      ).then((value) => {
-
-      }).catchError((e){});*/
       
       var user = FirebaseAuth.instance.currentUser;
 
@@ -277,27 +241,14 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       if(valueItem == 'Student') {
-        print('its student');
+        // print('its student');
         ref.doc(user.uid).set({'pt2_score': 0 }, SetOptions(merge: true));
         ref.doc(user.uid).set({'pt1_score': 0 }, SetOptions(merge: true));
         ref.doc(user.uid).set({'x_score': 0 }, SetOptions(merge: true));
         ref.doc(user.uid).set({'trial_pattern1': 1 }, SetOptions(merge: true));
         ref.doc(user.uid).set({'trial_pattern2': 1 }, SetOptions(merge: true));
-        // CollectionReference patRef1 = FirebaseFirestore.instance.collection('pattern1');
-        // CollectionReference patRef2 = FirebaseFirestore.instance.collection('pattern2');
+
       }
-
-      // FirebaseFirestore.instance.collection('users').doc(_uid).set({
-      //   'id': _uid,
-      //   'name': _controllerName.text,
-      //   'email': _controllerEmail.text,
-      //   'password': _controllerPassword.text,
-      //   'role': valueItem
-      //   //'profileImage': imageURL,
-      //   //'time': Timpstamp.naw()
-      // });
-
-      //Navigator.canPop(context) ? Navigator.of(context) : null;
 
       showDialog(
           context: context,
@@ -310,7 +261,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: const Text('OK'),
                   onPressed: () {
                     Navigator.pop(context); //close popup
-                    // Navigator.canPop(context) ? Navigator.of(context) : null;
 
                     Navigator.of(context).pushReplacement( //register สำเร็จแล้วเข้าแอปได้เลย
                         MaterialPageRoute(builder: (context) => Login())
@@ -332,44 +282,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextButton(
                   child: const Text('OK'),
                   onPressed: () {
-                    //close dialog
-                    //Navigator.canPop(context) ? Navigator.of(context) : null;
                     Navigator.pop(context);
                     Navigator.pop(context);
-                    //Navigator.canPop(context) ? Navigator.of(context) : null;
+
                   },
                 ),
               ],
             );
           });
     }
-    //return const CircularProgressIndicator();
   }
-
-
 }
-
-//db C
-// class User {
-//   String id;
-//   final String email;
-//   final String password;
-//   final String name;
-//   final String role;
-//
-//   User({
-//     this.id = '',
-//     required this.password,
-//     required this.email,
-//     required this.name,
-//     required this.role,
-//   });
-//
-//   Map<String, dynamic> toJson() => {
-//     'id': id,
-//     'username': email,
-//     'password': password,
-//     'name': name,
-//     'role': role
-//   };
-// } //class user

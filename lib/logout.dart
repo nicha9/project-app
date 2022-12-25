@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project_db/main.dart';
+import 'package:test_project_db/login.dart';
 
-import 'menubar.dart';
+import 'widget/menubar.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -83,14 +83,11 @@ class _UserPageState extends State<UserPage> {
                     margin: EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      //border: Border.all(color: Colors.grey, width: 3),
                       boxShadow: [BoxShadow(blurRadius: 20, color: Colors.black12, spreadRadius: 2)],
                       shape: BoxShape.circle,
-                      //borderRadius: BorderRadius.circular(10),
                     ),
                     child: CircleAvatar(
                       minRadius: 100,
-                      //backgroundColor: Colors.white,
                       backgroundImage: NetworkImage(_profileImg ?? ''),
                     ),
                   ),
@@ -118,10 +115,31 @@ class _UserPageState extends State<UserPage> {
                 shadowColor: Colors.grey,
               ),
                 onPressed: () => {
-                FirebaseAuth.instance.signOut(),
-                Navigator.of(context).pushReplacement( //register สำเร็จแล้วเข้าแอปได้เลย
-                  MaterialPageRoute(builder: (context) => Login())
-                )
+                  showDialog(
+                      context: context,
+                      builder:(BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Are you sure?'),
+                          content: Text('Are you sure you want to sign out you account?'),
+                          actions: [
+                            TextButton(
+                              child: const Text('No'),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            TextButton(
+                              child: const Text('Yes'),
+                              onPressed: () {
+                                FirebaseAuth.instance.signOut();
+                                Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => Login())
+                                );
+                              },
+                            ),
+                          ],
+                        );
+                      }),
                 },
                 icon: Icon(Icons.arrow_back, size: 30,),
                 label: Text(

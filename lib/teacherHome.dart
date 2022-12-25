@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:test_project_db/overallGraph.dart';
 import 'package:test_project_db/studentList.dart';
 import 'package:test_project_db/teacherGraph.dart';
-import 'main.dart';
+import 'login.dart';
 
 
 class TeacherHomePage extends StatefulWidget {
@@ -52,12 +52,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
               //height: size.height*0.3,
               decoration: BoxDecoration(
                 color: Colors.cyan.shade400,
-                /*gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.teal.shade200, Colors.cyan.shade400],
-                    //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-                  ),*/
+
                 borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(36),
                     bottomLeft: Radius.circular(36)
@@ -81,12 +76,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                           child: Text(
                             'Hi! $_name', //db
                             style: TextStyle(
-                              /*shadows: <Shadow>[
-                                    Shadow(
-                                      offset: Offset(3.0, 3.0),
-                                      blurRadius: 6.0,
-                                      color: Colors.grey.withOpacity(0.6),
-                                    ),],*/
+
                                 color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -100,9 +90,8 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                   ),
                   CircleAvatar(
                     minRadius: 55,
-                    //backgroundColor: Colors.white,
                     backgroundImage: NetworkImage(_profileImg ?? ''),
-                    // backgroundImage: AssetImage("images/userProfile.png"),
+
                   ),
                 ],
               ),
@@ -130,25 +119,10 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                   );
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => StudentListPage()));
-                  //Navigator.push(
-                      //context, MaterialPageRoute(builder: (_) => Menubar()));
                 },
                 child: Text(
                   'Individual Performance',
                   style: TextStyle(color: Colors.white, fontSize: 40),
-                  /*style: GoogleFonts.prompt(
-                    textStyle: TextStyle(
-                      /*shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(3.0, 3.0),
-                            blurRadius: 2.0,
-                            color: Colors.grey.withOpacity(0.3),
-                          ),],*/
-                        color: Colors.white,
-                        fontSize: 40,
-                        //fontWeight: FontWeight.bold
-                    ),
-                  ),*/
                 ),
               ),
             ),
@@ -178,19 +152,6 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                 child: Text(
                   'Class Performance',
                   style: TextStyle(color: Colors.white, fontSize: 40,fontWeight: FontWeight.bold),
-                  /*style: GoogleFonts.prompt(
-                    textStyle: TextStyle(
-                      /*shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(3.0, 3.0),
-                            blurRadius: 2.0,
-                            color: Colors.grey.withOpacity(0.3),
-                          ),],*/
-                        color: Colors.white,
-                        fontSize: 40,
-                        //fontWeight: FontWeight.bold
-                    ),
-                  ),*/
                 ),
               ),
             ),
@@ -222,19 +183,7 @@ class _TeacherHomePageState extends State<TeacherHomePage> {
                 child: Text(
                   'Sign Out',
                   style: TextStyle(color: Colors.white, fontSize: 36,fontWeight: FontWeight.bold),
-                  /*style: GoogleFonts.prompt(
-                    textStyle: TextStyle(
-                      /*shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(3.0, 3.0),
-                            blurRadius: 2.0,
-                            color: Colors.grey.withOpacity(0.3),
-                          ),],*/
-                      color: Colors.white,
-                      fontSize: 40,
-                      //fontWeight: FontWeight.bold
-                    ),
-                  ),*/
+
                 ),
               ),
             ),

@@ -5,13 +5,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:test_project_db/home.dart';
 
-import 'background.dart';
-import 'menubar.dart';
+import 'widget/background.dart';
+import 'widget/menubar.dart';
 
 class TipPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!; //เชื่อมต่อกับ authen หน้า login
+    final user = FirebaseAuth.instance.currentUser!;
 
     return Stack(
       children: [
@@ -21,20 +21,14 @@ class TipPage extends StatelessWidget {
           body: SingleChildScrollView(
               child: Column(
                   children: <Widget>[
-                    //Container(
-                    //height: 5,
-                    //),
+
                     Container(
                       height: 70,
                     ),
                     Container(
                       child: Container(
-                        //height: 110,
-                        //width: 270,
                         margin: EdgeInsets.fromLTRB(0,30,0,30),
-                        // decoration: BoxDecoration(
-                        //     color: Colors.teal.shade300, borderRadius: BorderRadius.circular(20)
-                        // ),
+
                         child: Center(
                           child: Text(
                             'How To Use',
@@ -213,9 +207,6 @@ class TipPage extends StatelessWidget {
                       ),
                     ),
 
-                    // SizedBox(
-                    //   height: 100,
-                    // ),
                     Container(
                       margin: EdgeInsets.only(top: 50),
 

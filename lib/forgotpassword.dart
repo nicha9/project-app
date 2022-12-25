@@ -29,12 +29,6 @@ class _ForgotpasswordState extends State<Forgotpassword> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             color: Colors.cyan.shade400,
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.teal.shade200, Colors.cyan.shade400],
-              //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-            ),*/
           ),
         ),
       ),

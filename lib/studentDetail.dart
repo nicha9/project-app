@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project_db/createGraph.dart';
+import 'package:test_project_db/widget/createGraph.dart';
 
-import 'histList.dart';
+import 'widget/histList.dart';
 
 class StudentDetail extends StatefulWidget {
   String id;
@@ -59,7 +59,6 @@ class _StudentDetailState extends State<StudentDetail> {
                       options: CarouselOptions(
                         height: 340,
                         enableInfiniteScroll: false,
-                        //viewportFraction: 1,
                       ),
                       itemCount: patterns.length,
                       itemBuilder: (context, index, realIndex){
@@ -69,7 +68,6 @@ class _StudentDetailState extends State<StudentDetail> {
                       },
                   ),
 
-                // child: CreateGraph(id, 'pattern1'),
               ),SizedBox(height: 10,),
 
               Padding(

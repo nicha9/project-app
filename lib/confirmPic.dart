@@ -11,7 +11,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'addPracticePic.dart';
 import 'package:test_project_db/home.dart';
-import 'package:test_project_db/menubar.dart';
+import 'package:test_project_db/widget/menubar.dart';
 import 'package:test_project_db/result.dart';
 import 'dart:io';
 // import 'package:http/http.dart' as http;
@@ -34,22 +34,21 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
   String? result_path;
   int score = 0;
 
-  //api
-  // final String baseUrl = "http://10.0.2.2:5000";
+  // ----------------- change api url ---------------------//
   final String baseUrl = "http://34.81.100.38:8080";
+  // final String baseUrl = "http://10.0.2.2:5000";
+
   Future<void> _processingImage(File image) async {
     BaseOptions options = new BaseOptions(
         baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
-        connectTimeout: 60*1000, // 60 seconds
-        receiveTimeout: 60*1000 // 60 seconds
+        connectTimeout: 60*1000,
+        receiveTimeout: 60*1000
     );
     Dio dio = new Dio(options);
 
-    // final Dio dio = Dio();
     var fileName = image.path.split('/').last;
     FormData formData = FormData.fromMap({
-      // "filename": FirebaseAuth.instance.currentUser?.uid,
       "image": await MultipartFile.fromFile(image.path, filename: fileName),
       "uid": FirebaseAuth.instance.currentUser?.uid,
       "trial": widget.trialNo.toString(),
@@ -62,22 +61,20 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
         builder: (context) => Center(child: CircularProgressIndicator(),));
 
     try{
-      print('send data');
+      // print('send data');
       var response = await dio.post("$baseUrl/processing",
           data: formData);
-      print(response);
+      // print(response);
 
-      print('call api success');
+      // print('call api success');
       final decoded = await json.decode(response.data);
       result_path = decoded['img_url'].toString();
       score = decoded['score'] as int;
-      print(result_path);
-      print(score);
-      // var responseData = response.data;
-      print('get response done');
+      // print(result_path);
+      // print(score);
+      // print('get response done');
 
-      // data = responseData.map((e) => Data.fromJson(e));
-      print('api success');
+      // print('api success');
 
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (_) => ResultPage(widget.patternNo,widget.trialNo,result_path!,score)));
@@ -107,74 +104,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
 
   }
 
-  // void getUserData() async {
-  //   final DocumentSnapshot userDoc = await FirebaseFirestore.instance
-  //       .collection('users').doc(FirebaseAuth.instance.currentUser!.uid)
-  //       .get();
-  //
-  //   if (userDoc == null) {
-  //     return;
-  //   }
-  //   else {
-  //     setState(() {
-  //       _imgUrl = userDoc.get('tempImg');
-  //       print(_imgUrl);
-  //     });
-  //   }
-  // }
-
-  // void clearTmpData() async {
-  //   final ref = FirebaseStorage.instance.ref().child('tmpImg').child('${FirebaseAuth.instance.currentUser!.uid}.jpg');
-  //
-  //   // Delete the file
-  //   await ref.delete();
-  // }
-
-  // void showImgDialog() {
-  //   showDialog(context: context, builder: (context){
-  //     return AlertDialog(
-  //
-  //       title: Text('choose an option', style: TextStyle(fontSize: 30),),
-  //       content: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: [
-  //           InkWell(
-  //             onTap: (){
-  //               _getFromCamera;
-  //             },
-  //             child: Row(
-  //               children: [
-  //                 Padding(
-  //                   padding: EdgeInsets.all(5),
-  //                   child: Icon(Icons.camera_alt_outlined),
-  //                 ),
-  //                 Text('Camera',style: TextStyle(fontSize: 30),)
-  //               ],
-  //             ),
-  //           ),
-  //           InkWell(
-  //             onTap: (){
-  //               _getFromGallery();
-  //             },
-  //             child: Row(
-  //               children: [
-  //                 Padding(
-  //                   padding: EdgeInsets.all(5),
-  //                   child: Icon(Icons.photo_camera_back),
-  //                 ),
-  //                 Text('Gallery',style: TextStyle(fontSize: 30),)
-  //               ],
-  //             ),
-  //           )
-  //
-  //         ],
-  //       ),
-  //     );
-  //   });
-  // }
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -185,12 +114,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             color: Colors.cyan.shade400,
-            /*gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.teal.shade200, Colors.cyan.shade400],
-              //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-            ),*/
+
           ),
         ),
       ),
@@ -230,7 +154,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
               SizedBox(height: 30,),
 
               Container(
-                //padding: EdgeInsets.fromLTRB(50, 40, 30, 40),
+
                 child: TextButton(
                   style: TextButton.styleFrom(
                     elevation: 3,
@@ -249,7 +173,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
 
                     Navigator.canPop(context) ? Navigator.of(context) : null;
 
-                    // clearTmpData();
                     Navigator.pushReplacement(
                         context, MaterialPageRoute(builder: (_) => AddPracticePicPage(widget.patternNo, widget.trialNo)));
 
@@ -258,12 +181,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                     'เลือกรูปภาพใหม่',
                     style: GoogleFonts.prompt(
                       textStyle: TextStyle(
-                        /*shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(3.0, 3.0),
-                            blurRadius: 2.0,
-                            color: Colors.grey.withOpacity(0.3),
-                          ),],*/
                           color: Colors.white,
                           fontSize: 38,
                           fontWeight: FontWeight.w600
@@ -280,8 +197,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   Container(
-                    //alignment: Alignment.center,
-                    //padding: EdgeInsets.fromLTRB(50, 40, 30, 40),
+
                     child: TextButton(
                       style: TextButton.styleFrom(
                         elevation: 3,
@@ -297,8 +213,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                           elevation: 4,
                           backgroundColor: Colors.grey.shade600,
                         );
-                        // _delete temp img file
-                        // clearTmpData();
+
                         Navigator.pop(context);
                         Navigator.pushReplacement(
                          context, MaterialPageRoute(builder: (_) => AddPracticePicPage(widget.patternNo, widget.trialNo)));
@@ -312,7 +227,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                   ),
 
                   Container(
-                    //padding: EdgeInsets.fromLTRB(50, 40, 30, 40),
+
                     child: TextButton(
                       style: TextButton.styleFrom(
                         elevation: 3,
@@ -331,8 +246,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                           backgroundColor: Colors.yellow.shade700,
                         );
                         Navigator.canPop(context) ? Navigator.of(context) : null;
-                        // Navigator.pushReplacement(
-                        // context, MaterialPageRoute(builder: (_) => ResultPage(widget.patternNo,widget.trialNo,result_path!,score)));
                       },
                       child: Text(
                         'next',
@@ -352,24 +265,3 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
     );
   }
 }
-
-// class Data {
-//   int errScore;
-//   String resultPath;
-//
-//   Data({
-//     required this.errScore,
-//     required this.resultPath,
-//   });
-//
-//   Map<String, dynamic> toJson() => {
-//     'score': errScore,
-//     'img_url': resultPath,
-//
-//   };
-//
-//   static Data fromJson(Map<String, dynamic> json) => Data(
-//     errScore: json['score'],
-//     resultPath: json['img_url'],
-//   );
-// }

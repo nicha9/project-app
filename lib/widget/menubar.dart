@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'graphPage.dart';
-import 'submit.dart';
-import 'user.dart';
-import 'home.dart';
+import '../graphPage.dart';
+import '../triallog.dart';
+import '../logout.dart';
+import '../home.dart';
 
 class Menubar extends StatefulWidget {
   @override
@@ -32,8 +32,7 @@ class _MenubarState extends State<Menubar> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.cyan.shade400,
         type: BottomNavigationBarType.fixed, //no slide emotion
-        //selectedItemColor: Colors.cyan.shade400,
-        //unselectedItemColor: Colors.grey.shade400,
+
 
         elevation: 5,
         iconSize: 38,
@@ -52,7 +51,6 @@ class _MenubarState extends State<Menubar> {
         },
         items: [
           BottomNavigationBarItem(
-            //backgroundColor: Colors.cyan.shade400,
               icon: Icon(Icons.home),
               label: 'Home',),
           BottomNavigationBarItem(
@@ -62,7 +60,6 @@ class _MenubarState extends State<Menubar> {
               icon: Icon(Icons.show_chart),
               label: 'Graph'),
           BottomNavigationBarItem(
-            //backgroundColor: Colors.white,
               icon: Icon(Icons.exit_to_app),
               label: 'Sign Out'),
         ],

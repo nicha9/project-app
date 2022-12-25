@@ -22,31 +22,13 @@ class _HomePageState extends State<HomePage> {
   var _trial1;
   var _trial2;
 
-  //String? name;
-  //late String _profileUrl;
 
   //create pattern collection in firestore
   Future _createPattern() async {
     CollectionReference patternRef = FirebaseFirestore.instance.collection('pattern');
     CollectionReference userRef = FirebaseFirestore.instance.collection('users');
-    // ref.doc(FirebaseAuth.instance.currentUser!.uid).set({
-    //   'patternNo': _patternNo,
-    // });
-    // FirebaseFirestore.instance.collection('users').doc(user!.uid).set(data, SetOptions(merge: true));
-    // await patternRef.add({
-    //   'patternID' : _patternNo,
-    //   'userID' : FirebaseAuth.instance.currentUser!.uid,
-    // });
+
   }
-
-
-  // void getUserData() async {
-  //   final DocumentSnapshot userDoc = await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid)
-  //       .get();
-  //   setState(() {
-  //     var name = userDoc.get('name');
-  //   });
-  // }
 
   Future<void> getUserData() async {
     final DocumentSnapshot userDoc = await FirebaseFirestore.instance
@@ -85,12 +67,7 @@ class _HomePageState extends State<HomePage> {
                 //height: size.height*0.3,
                 decoration: BoxDecoration(
                   color: Colors.cyan.shade400,
-                  // gradient: LinearGradient(
-                  //   begin: Alignment.topCenter,
-                  //   end: Alignment.bottomCenter,
-                  //   colors: [Colors.teal.shade200, Colors.cyan.shade400],
-                  //   //colors: [Colors.cyan.shade400, Colors.deepPurple.shade600], //blue700, indigo
-                  // ),
+
                   borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(36),
                       bottomLeft: Radius.circular(36)
@@ -114,12 +91,7 @@ class _HomePageState extends State<HomePage> {
                             child: Text(
                               'Hi! ${_name ?? ''}', //db
                               style: TextStyle(
-                                  /*shadows: <Shadow>[
-                                    Shadow(
-                                      offset: Offset(3.0, 3.0),
-                                      blurRadius: 6.0,
-                                      color: Colors.grey.withOpacity(0.6),
-                                    ),],*/
+
                                   color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -133,9 +105,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     CircleAvatar(
                       minRadius: 55,
-                      //backgroundColor: Colors.white,
                       backgroundImage: NetworkImage(_profileImg ?? ''),
-                      // backgroundImage: AssetImage("images/userProfile.png"),
 
                     ),
                   ],
@@ -152,12 +122,6 @@ class _HomePageState extends State<HomePage> {
                     'เลือกรูปแบบแบบฝึกหัดที่ต้องการประเมิน',
                     style: GoogleFonts.prompt(
                       textStyle: TextStyle(
-                        /*shadows: <Shadow>[
-                          Shadow(
-                            offset: Offset(3.0, 3.0),
-                            blurRadius: 2.0,
-                            color: Colors.grey.withOpacity(0.3),
-                          ),],*/
                           color: Colors.cyan.shade400,
                           fontSize: 32,
                           fontWeight: FontWeight.w500
@@ -176,32 +140,15 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
-                      /*height: 205,
-                      width: 235,
-                      decoration: BoxDecoration(
-                        color: Colors.cyan.shade400,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            offset: Offset(5, 5),
-                            blurRadius: 10,
-                          )
-                        ],
-                      ),*/
                       child: Material(  //contain img+name of pattern
 
-                        //color: Colors.cyan.shade400,
                         elevation: 0,
                         borderRadius: BorderRadius.circular(10),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: InkWell(
-                          //splashColor: Colors.cyan.shade100,
                           onTap: () { //pattern1
                             //db
-                            //_patternNo = 1;
                             _createPattern();
-
                             Navigator.push(
                                 context, MaterialPageRoute(builder: (_) => AddPracticePicPage("pattern1", _trial1)));
                           },
@@ -240,12 +187,10 @@ class _HomePageState extends State<HomePage> {
 
                     Container(
                       child: Material(  //contain img+name of pattern
-                        //color: Colors.cyan.shade400,
                         elevation: 0,
                         borderRadius: BorderRadius.circular(16),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: InkWell(
-                          //splashColor: Colors.cyan.shade100,
                           onTap: () {
                             //db
                             _createPattern();
@@ -301,7 +246,6 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.center,
                         children: <Widget>[
                           Material(  //contain img+name of pattern
-                            //color: Colors.cyan.shade400,
                             elevation: 0,
                             borderRadius: BorderRadius.circular(10),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -348,7 +292,6 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment.center,
                         children: <Widget>[
                           Material(  //contain img+name of pattern
-                            //color: Colors.cyan.shade400,
                             elevation: 0,
                             borderRadius: BorderRadius.circular(10),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -401,14 +344,5 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
-
-    //db fetch data
-    // _fetch() async {
-    //   User? user = FirebaseAuth.instance.currentUser;
-    //   await FirebaseFirestore.instance
-    //       .collection('user')
-    //       .doc(firebaseUser.uid).get()
-    //
-    // }
 
   }
