@@ -28,7 +28,7 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
   int score = 0;
 
   // ----------------- change api url ---------------------//
-  final String baseUrl = "http://34.81.100.38:8080";
+  final String baseUrl = "http://35.229.200.123:8080";
   // final String baseUrl = "http://10.0.2.2:5000";
 
   Future<void> _processingImage(File image) async {
