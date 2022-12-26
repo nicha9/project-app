@@ -245,11 +245,11 @@ python3 app.py
 6. ติดตั้ง flutter plugin
 7. ตั้งค่า flutter sdk path
 8. ไปที่ไฟล์ pubspec.yaml กด pub upgrade และ pub get
-8. create AVD ทำการสร้าง Device จำลองการทำงานของแอปพลิเคชัน โดยเลือกเมนู Device Manager และเลือก create device
-9. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
-10. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
-11. เลือกเป็นแบบ Portrait แล้วกด finish เป็นอันเสร็จสิ้นการสร้าง emulator
-12. Launch AVD เพื่อเปิด emulator และกด run เพื่อรันโปรเจ็ค
+9. create AVD ทำการสร้าง Device จำลองการทำงานของแอปพลิเคชัน โดยเลือกเมนู Device Manager และเลือก create device
+10. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
+11. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
+12. เลือกเป็นแบบ Portrait แล้วกด finish เป็นอันเสร็จสิ้นการสร้าง emulator
+13. Launch AVD เพื่อเปิด emulator และกด run เพื่อรันโปรเจ็ค
 
 > สามารถเพิ่มรูปภาพสำหรับใช้ทดสอบได้โดยไปที่ รูปภาพ บน emulator
 > แล้วทำการลากภาพที่่ต้องการใช้ทดสอบจากบนอุปกรณ์ ไปยัง emulator ได้เลย
