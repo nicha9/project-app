@@ -187,6 +187,8 @@ TU IVAR (Indirect Vision Accuracy Report) - แอปพลิเคชันส
 ## Getting Start
 สามารถทำตามคำแนะนำเพื่อทำการนสำเนาโปรแกรมไปติดตั้ง เพื่อใช้ในการพัฒนาบนอุปกรณ์ของตนเองได้ โดย service ที่ทางทีมผู้พัฒนาได้พัฒนาไว้สามารถใช้งานได้ถึงวันที่ 1 กุมภาพันธ์ พ.ศ.2566 หากใช้งานภายในระยะเวลานี้สามารถข้ามขั้นตอนการสร้าง Server ไปยังขั้นตอนการสร้าง Flutter App ได้เลย
 
+**สามารถดูรายละเอียดการติดตั้งเพิ่มเติมได้ที่วิดีโอ demo
+
 ### ขั้นตอนการจัดเตรียม Server
 1. สร้างบัญชี Google cloud
     สามารถสมัครได้ที่: https://cloud.google.com/
@@ -198,22 +200,36 @@ TU IVAR (Indirect Vision Accuracy Report) - แอปพลิเคชันส
 5. คลิกเลือกตัวเลือก Allow HTTP traffic และกด create
 6. คลิกที่ไอคอน dropdown บริเวณคำว่า SSH เลือก View gcloud command และ RUN IN CLOUD SHELL
 7. ตรวจสอบว่ามี python3 และ pip หรือไม่ หากไม่มีให้ทำการติดตั้ง
-7. ทำการสร้างไฟล์สำหรับประมวลผลภาพแบบฝึกทักษะ โดยทำการคัดลอกโค้ดในแต่ละไฟล์บน google drive ในโฟลเดอร์ server มาเขียนใหม่โดยใช้คำสั่ง nano ให้ครบทุกไฟล์
+> หากพบ Error: Permission denied ให้ใช้คำสั่ง
+        ```
+        sudo apt install python3-pip
+        ```
+        
+> หากพบปัญหา Error: Package 'python3-pip' has no installation candidate ให้ทำการ update apt-get โดยใช้คำสั่ง
+        ```
+        sudo apt-get update
+        ```
+       และทำการติดตั้ง python3-pip อีกครั้ง
+8. ทำการสร้างไฟล์สำหรับประมวลผลภาพแบบฝึกทักษะ โดยทำการคัดลอกโค้ดในแต่ละไฟล์บน google drive ในโฟลเดอร์ server มาเขียนใหม่โดยใช้คำสั่ง nano ให้ครบทุกไฟล์
 ``` python
 nano app.py
 #copy code app.py from google drive and paste to create file.
 ```
-8. ทำการติดตั้งทรัพยากรที่ใช้ โดยใช้คำสั่ง 
+9. ทำการติดตั้งทรัพยากรที่ใช้ โดยใช้คำสั่ง 
 ``` python
 pip install -r requirements.txt
 ```
-9. รัน server ด้วยคำสั่ง 
+10. รัน server ด้วยคำสั่ง 
 ``` python
 python3 app.py
 ```
-10. เปิดหน้า VM instance คลิก link ของ External IP
+> หากพบปัญหา ImportError: libGL.so.1: cannot open shared object file: No such file or directory ให้ใช้คำสั่ง
+        ```
+        sudo apt-get install ffmpeg libsm6 libxext6 -y
+        ```
+11. เปิดหน้า VM instance คลิก link ของ External IP
 ![image](https://user-images.githubusercontent.com/116788784/209476063-ab553b34-f3b9-4903-9d0a-784fbb1d78a4.png)
-11. แก้ไข url โดยทำเปลี่ยน protocol จาก https เป็น http และระบุ port :8080 หาก server สามารถใช้งานได้จะแสดงคำว่า "Server is now available."
+12. แก้ไข url โดยทำเปลี่ยน protocol จาก https เป็น http และระบุ port :8080 หาก server สามารถใช้งานได้จะแสดงคำว่า "Server is now available."
 
 
 ### ขั้นตอนการจัดเตรียม Flutter App
@@ -228,6 +244,7 @@ python3 app.py
 5. ใส่ URL: https://github.com/nicha9/project-app.git และ clone
 6. ติดตั้ง flutter plugin
 7. ตั้งค่า flutter sdk path
+8. ไปที่ไฟล์ pubspec.yaml กด pub upgrade และ pub get
 8. create AVD ทำการสร้าง Device จำลองการทำงานของแอปพลิเคชัน โดยเลือกเมนู Device Manager และเลือก create device
 9. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
 10. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
