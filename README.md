@@ -252,6 +252,7 @@ python3 app.py
 12. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
 13. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
 14. เลือกเป็นแบบ Portrait แล้วกด finish เป็นอันเสร็จสิ้นการสร้าง emulator
+> สำหรับผู้ที่ทำการสร้าง server ใหม่ให้นำ URL Link มาแก้ไขในไฟล์ confirmPic.dart และ result.dart ก่อนทำการ run โปรเจ็ค
 15. Launch AVD เพื่อเปิด emulator และกด run เพื่อรันโปรเจ็ค
 
 > สามารถเพิ่มรูปภาพสำหรับใช้ทดสอบได้โดยไปที่ รูปภาพ บน emulator
