@@ -3,7 +3,7 @@ TU IVAR (Indirect Vision Accuracy Report) - แอปพลิเคชันส
 
 ### Directory Tree
 ```bash
-
+.
 │   .gitignore
 │   .metadata
 │   analysis_options.yaml
@@ -154,32 +154,33 @@ TU IVAR (Indirect Vision Accuracy Report) - แอปพลิเคชันส
 │               WorkspaceSettings.xcsettings
 │
 ├───lib
-│   │   addPracticePic.dart
-│   │   confirmPic.dart
-│   │   forgotpassword.dart
-│   │   graphPage.dart
-│   │   home.dart
-│   │   login.dart
-│   │   logout.dart
-│   │   overallGraph.dart
-│   │   register.dart
-│   │   result.dart
-│   │   studentDetail.dart
-│   │   studentList.dart
-│   │   teacherGraph.dart
-│   │   teacherHome.dart
-│   │   tip.dart
-│   │   triallog.dart
-│   │
 │   ├───model
 │   │       resultModel.dart
 │   │       userModel.dart
+│   │
+│   ├───pages
+│   │       addPracticePic.dart
+│   │       confirmPic.dart
+│   │       forgotpassword.dart
+│   │       graphPage.dart
+│   │       home.dart
+│   │       login.dart
+│   │       logout.dart
+│   │       register.dart
+│   │       result.dart
+│   │       studentDetail.dart
+│   │       studentList.dart
+│   │       teacherGraph.dart
+│   │       teacherHome.dart
+│   │       tip.dart
+│   │       triallog.dart
 │   │
 │   └───widget
 │           background.dart
 │           createGraph.dart
 │           histList.dart
 │           menubar.dart
+│           overallGraph.dart
 │
 └───test
         widget_test.dart
@@ -243,13 +244,15 @@ python3 app.py
 4. เปิด Android Studio คลิกไปที่บริเวณไอคอนรูปจุดสามจุด แล้วเลือก Get from Version Control
 5. ใส่ URL: https://github.com/nicha9/project-app.git และ clone
 6. ติดตั้ง flutter plugin
-7. ตั้งค่า flutter sdk path
-8. ไปที่ไฟล์ pubspec.yaml กด pub upgrade และ pub get
-9. create AVD ทำการสร้าง Device จำลองการทำงานของแอปพลิเคชัน โดยเลือกเมนู Device Manager และเลือก create device
-10. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
-11. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
-12. เลือกเป็นแบบ Portrait แล้วกด finish เป็นอันเสร็จสิ้นการสร้าง emulator
-13. Launch AVD เพื่อเปิด emulator และกด run เพื่อรันโปรเจ็ค
+7. กดที่ Add configuration เลือกเครื่องหมายบวก Add new configuration ที่มุมบนซ้าย แล้วเลือกไปที่ Flutter
+8. ในส่วนของ Dart entrypoint: เลือกโฟลเดอร์ project > lib > pages > login.dart
+9. ในแถบด้านล่างจะแสดง Error: Dart SDK is not configured ให้กด Fix ไปที่เมนู Flutter ในช่อง Flutter SDK path ให้เลือกโฟลเดอร์ที่ได้ทำการติดตั้ง flutter ในอุปกรณ์
+10. ไปที่ไฟล์ pubspec.yaml กด pub upgrade และ pub get
+11. create AVD ทำการสร้าง Device จำลองการทำงานของแอปพลิเคชัน โดยเลือกเมนู Device Manager และเลือก create device
+12. เลือกตัวเลือกประเภท Tablet ชื่อ Nexus9 แล้วกด next
+13. ดาวน์โหลด Release Name: Q, API Level: 29 แล้วกด next
+14. เลือกเป็นแบบ Portrait แล้วกด finish เป็นอันเสร็จสิ้นการสร้าง emulator
+15. Launch AVD เพื่อเปิด emulator และกด run เพื่อรันโปรเจ็ค
 
 > สามารถเพิ่มรูปภาพสำหรับใช้ทดสอบได้โดยไปที่ รูปภาพ บน emulator
 > แล้วทำการลากภาพที่่ต้องการใช้ทดสอบจากบนอุปกรณ์ ไปยัง emulator ได้เลย
