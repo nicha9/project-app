@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:test_project_db/forgotpassword.dart';
 
+import 'forgotpassword.dart';
 import 'teacherHome.dart';
 import 'register.dart';
 import 'tip.dart';

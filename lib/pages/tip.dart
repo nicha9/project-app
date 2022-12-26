@@ -1,12 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-import 'package:test_project_db/home.dart';
 
-import 'widget/background.dart';
-import 'widget/menubar.dart';
+import '../widget/background.dart';
+import '../widget/menubar.dart';
+
 
 class TipPage extends StatelessWidget {
   @override

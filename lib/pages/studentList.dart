@@ -1,13 +1,11 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project_db/widget/histList.dart';
-import 'package:test_project_db/studentDetail.dart';
+import 'package:test_project_db/pages/studentDetail.dart';
 
-//json 'Users' model
-import 'model/userModel.dart';
+import '../model/userModel.dart';
+
+
 
 class StudentListPage extends StatelessWidget {
   @override

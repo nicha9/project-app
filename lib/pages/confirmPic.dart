@@ -3,19 +3,13 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:test_project_db/pages/result.dart';
 import 'addPracticePic.dart';
-import 'package:test_project_db/home.dart';
 import 'package:test_project_db/widget/menubar.dart';
-import 'package:test_project_db/result.dart';
 import 'dart:io';
-// import 'package:http/http.dart' as http;
-
 
 
 class ConfirmPicPage extends StatefulWidget {
@@ -30,7 +24,6 @@ class ConfirmPicPage extends StatefulWidget {
 }
 
 class _ConfirmPicPageState extends State<ConfirmPicPage> {
-  // List<Data> data = [];
   String? result_path;
   int score = 0;
 
@@ -166,7 +159,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                   ),
                   onPressed: () {
                     style: TextButton.styleFrom(
-                      //foregroundColor: Colors.red,
                       elevation: 4,
                       backgroundColor: Colors.cyan.shade600,
                     );
@@ -209,7 +201,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                       ),
                       onPressed: () {
                         style: TextButton.styleFrom(
-                          //foregroundColor: Colors.red,
                           elevation: 4,
                           backgroundColor: Colors.grey.shade600,
                         );
@@ -241,7 +232,6 @@ class _ConfirmPicPageState extends State<ConfirmPicPage> {
                         _processingImage(widget.img);
 
                         style: TextButton.styleFrom(
-                          //foregroundColor: Colors.red,
                           elevation: 4,
                           backgroundColor: Colors.yellow.shade700,
                         );

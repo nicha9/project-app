@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../graphPage.dart';
-import '../triallog.dart';
-import '../logout.dart';
-import '../home.dart';
+import '../pages/graphPage.dart';
+import '../pages/home.dart';
+import '../pages/logout.dart';
+import '../pages/triallog.dart';
+
 
 class Menubar extends StatefulWidget {
   @override

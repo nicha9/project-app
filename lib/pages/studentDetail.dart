@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project_db/widget/createGraph.dart';
 
-import 'widget/histList.dart';
+import '../widget/histList.dart';
+
+
 
 class StudentDetail extends StatefulWidget {
   String id;

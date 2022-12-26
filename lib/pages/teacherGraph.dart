@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test_project_db/overallGraph.dart';
+
+import '../widget/overallGraph.dart';
+
 
 class TeacherGraph extends StatefulWidget{
   @override

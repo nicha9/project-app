@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_project_db/widget/histList.dart';
 
+import '../widget/menubar.dart';
 
-import 'widget/menubar.dart';
 
 class SubmitPage extends StatelessWidget {
   final userID = FirebaseAuth.instance.currentUser?.uid;

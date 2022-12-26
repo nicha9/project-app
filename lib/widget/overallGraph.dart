@@ -1,10 +1,7 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:test_project_db/widget/createGraph.dart';
-import 'package:test_project_db/model/resultModel.dart';
 
 class OverallGraph extends StatefulWidget{
 
